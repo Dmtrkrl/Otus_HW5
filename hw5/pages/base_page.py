@@ -9,9 +9,6 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def open_url(self, url):
-        self.driver.get(url)
-
     def wait_title_contain(self, text, timeout=3):
         try:
             WebDriverWait(self.driver, timeout).until(ec.title_contains(text))
