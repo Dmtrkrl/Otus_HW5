@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from hw5.pages.framework import PseudoFramework
+from hw5.pages.base_page import BasePage
 
 
-class MainPage(PseudoFramework):
+class MainPage(BasePage):
     TITLE = 'Your Store'
     LOGO = (By.CSS_SELECTOR, 'img[title="Your Store"]')
     CART = (By.CSS_SELECTOR, 'div[class="btn-group btn-block"]')
