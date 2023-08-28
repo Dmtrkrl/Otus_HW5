@@ -5,27 +5,27 @@ from hw5.pages.elements.product import *
 
 def test_main_page_title(driver, base_url):
     driver.get(base_url)
-    BasePage(driver).wait_title_contain(MainPage.TITLE)
+    MainPage(driver).wait_title_contain(MainPage.TITLE)
 
 
 def test_main_page_logo(driver, base_url):
     driver.get(base_url)
-    BasePage(driver).wait_element(MainPage.LOGO)
+    MainPage(driver).wait_element(MainPage.LOGO)
 
 
 def test_main_page_cart(driver, base_url):
     driver.get(base_url)
-    BasePage(driver).wait_element(MainPage.CART)
+    MainPage(driver).wait_element(MainPage.CART)
 
 
 def test_main_page_search(driver, base_url):
     driver.get(base_url)
-    BasePage(driver).wait_element(MainPage.SEARCH)
+    MainPage(driver).wait_element(MainPage.SEARCH)
 
 
 def test_main_page_goods(driver, base_url):
     driver.get(base_url)
-    BasePage(driver).wait_element(MainPage.SLIDE_SHOW)
+    MainPage(driver).wait_element(MainPage.SLIDE_SHOW)
 
 
 def test_switch_all_currency(driver, base_url):
