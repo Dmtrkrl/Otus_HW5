@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
-from hw5.pages.framework import PseudoFramework
+from hw5.pages.base_page import BasePage
 from collections import namedtuple
 import re
 
 
-class Currency(PseudoFramework):
+class Currency(BasePage):
     CURRENCY_BTN = (By.CSS_SELECTOR, '[class="fa fa-caret-down"]')
     EUR = (By.NAME, 'EUR')
     IS_EUR_CURRENCY = (By.XPATH, '//strong[text()="€"]')
@@ -24,19 +24,21 @@ class Currency(PseudoFramework):
     def get_product_price(self):
         price_element = self.driver.find_element(By.CSS_SELECTOR, 'p.price')
         price_text = price_element.text.strip()
-        price_match = re.search(r'\$([\d,.]+)', price_text)
-        if price_match:
-            price_value = float(price_match.group(1).replace(',', '').replace(',', ''))
-            return price_value
+        currency_patterns = {
+            '$': r'\$([\d,.]+)',
+            '€': r'([\d,.]+)\s?€',
+            '£': r'([\d,.]+)\s?£'
+        }
+        for money_symbol, pattern in currency_patterns.items():
+            match = re.search(pattern, price_text)
+            if match:
+                value = float(match.group(1).replace(',', ''))
+                return value
+        return None
 
     def switch_currency(self, currency):
         initial_price = self.get_product_price
         self.click(self.CURRENCY_BTN)
         self.click(currency.name)
-        self.wait_element(currency.check)
         new_price = self.get_product_price
-        return initial_price == new_price
-
-    def switch_all_currencies(self):
-        for currency in self.CURRENCY_DATA:
-            self.switch_currency(currency)
+        return initial_price, new_price

@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from hw5.pages.framework import PseudoFramework
+from hw5.pages.base_page import BasePage
 
 
-class CatalogPage(PseudoFramework):
+class CatalogPage(BasePage):
     ADD_URL = r'/desktops'
     TITLE = 'Desktops'
     LOGO = (By.CSS_SELECTOR, 'img[title="Your Store"]')

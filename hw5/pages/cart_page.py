@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from hw5.pages.framework import PseudoFramework
+from hw5.pages.base_page import BasePage
 
 
-class CartPage(PseudoFramework):
+class CartPage(BasePage):
     ADD_URL = r'index.php?route=checkout/cart'
     TITLE = 'Shopping Cart'
     LOGO = (By.CSS_SELECTOR, 'img[title="Your Store"]')
